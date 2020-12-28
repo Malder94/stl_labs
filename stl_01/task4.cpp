@@ -1,36 +1,33 @@
 /*
  * Прочитайте во встроенный массив С содержимое текстового файла, скопируйте данные в вектор
  * одной строкой кода (без циклов и алгоритмов STL)
- * */
+ */
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 
-using namespace std;
-
 int main ()
 {
-    vector <string> stringVector;
+    std::vector <std::string> string_vector;
     setlocale(LC_ALL, "RUS");
-    string str;
+    std::string str;
 
-    ifstream fInput ("../stl_01/text.txt");
+    std::ifstream fInput ("../stl_01/text.txt");
 
     if (fInput.is_open())
     {
-        stringstream ss;
+        std::stringstream ss;
         ss << fInput.rdbuf();
         str = ss.str();
     }
     fInput.close();
 
-    stringVector.push_back(str);
+    string_vector.push_back(str);
 
-    for (int i = 0; i < stringVector.size(); ++i) cout << stringVector.at(i);
-    //for (const auto & i : stringVector) cout << i;
-
+    for (int i = 0; i < string_vector.size(); ++i)
+        std::cout << string_vector.at(i);
 
     return 0;
 }

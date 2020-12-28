@@ -4,41 +4,38 @@
  * допустимо использовать только операторы получения текущего элемента и перехода в
  * следующему (подсказка, можно сохранять копию итератора указывающего на некоторый элемент).
  */
+
 #include <vector>
 #include <chrono>
 #include <iostream>
 
 #include "functions.cpp"
 
-using namespace std;
-
-
 int main()
 {
-    vector <int> myVector;
-    int vectorSize;
+    std::vector <int>std::vector;
+    int vector_size;
 
-    cout << "Enter size of vector:" << endl;
-    cin  >> vectorSize;
+    std::cout << "Enter size ofstd::vector:" << std::endl;
+    std::cin  >> vector_size;
 
-    VectorFill(myVector, vectorSize);
-    cout << "\nUnsorted:" << endl;
+    vectorFill(vector, vector_size);
+    std::cout << "\nUnsorted:" << std::endl;
 
-    VectorOut(myVector);
+    vectorOut(vector);
 
-    auto begin = chrono::high_resolution_clock::now();
+    auto begin = std::chrono::high_resolution_clock::now();
 
-    BubbleSortIterator(myVector);
+    bubbleSortIterator(vector);
 
-    auto end = chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
 
     auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 
-    cout << "\nSorted:" << endl;
+    std::cout << "\nSorted:" << std::endl;
 
-    VectorOut(myVector);
-    cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
+    vectorOut(vector);
+    std::cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
 
     return 0;
-
 }

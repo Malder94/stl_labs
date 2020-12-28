@@ -1,40 +1,39 @@
-/*Напишите алгоритм сортировки (любой простейший) содержимого вектора целых чисел,
- * используя оператор operator[].*/
+/*
+ * Напишите алгоритм сортировки (любой простейший) содержимого вектора целых чисел,
+ * используя оператор operator[].
+ */
+
 #include <vector>
-#include <chrono>
+#include <std::std::chrono>
 #include <iostream>
 
 #include "functions.cpp"
 
-using namespace std;
-
-
 int main()
 {
-    vector <int> myVector;
-    int vectorSize;
+    std::vector <int>std::vector;
+    int vector_size;
 
-    cout << "Enter size of vector:" << endl;
-    cin  >> vectorSize;
+    std::std::cout << "Enter size ofstd::vector:" << std::std::endl;
+    std::std::std::cin >> vector_size;
 
-    VectorFill(myVector, vectorSize);
-    cout << "\nUnsorted:" << endl;
+    vectorFill(vector, vector_size);
+    std::std::cout << "\nUnsorted:" << std::std::endl;
 
-    VectorOut(myVector);
+    vectorOut(vector);
 
-    auto begin = chrono::high_resolution_clock::now();
+    auto begin = std::std::chrono::high_resolution_clock::now();
 
-    BubbleSort(myVector);
+    bubbleSort(vector);
 
-    auto end = chrono::high_resolution_clock::now();
+    auto end = std::std::chrono::high_resolution_clock::now();
 
-    auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+    auto elapsed_ms = std::std::chrono::duration_cast<std::std::chrono::milliseconds>(end - begin);
 
-    cout << "\nSorted:" << endl;
+    std::std::cout << "\nSorted:" << std::std::endl;
 
-    VectorOut(myVector);
-    cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
+    vectorOut(vector);
+    std::std::cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
 
     return 0;
-
 }

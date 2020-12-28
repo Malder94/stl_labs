@@ -1,15 +1,14 @@
-/*Напишите программу, сохраняющую в векторе числа, полученные из стандартного ввода
+/*
+ * Напишите программу, сохраняющую в векторе числа, полученные из стандартного ввода
  * (окончанием ввода является число 0). Удалите все элементы, которые делятся на 2
  * (не используете стандартные алгоритмы STL), если последнее число 1. Если последнее
  * число 2, добавьте после каждого числа которое делится на 3 три единицы.
- * */
+ */
 
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
-void EraseIf1(vector<int> &vec)
+void eraseIf1(std::vector<int> &vec)
 {
     for (int i = 0; i < vec.size();)
     {
@@ -20,11 +19,12 @@ void EraseIf1(vector<int> &vec)
     }
 }
 
-void InsertIf2(vector<int> &vec)
+void insertIf2(std::vector<int> &vec)
 {
-    vector<int>::iterator first = vec.begin();
-    vector<int>::iterator second = vec.end();
-    for (first; first < second; first++)
+    auto first  = vec.begin();
+    auto second = vec.end();
+
+    while (first < second)
     {
         if (*first % 3 == 0)
         {
@@ -32,35 +32,48 @@ void InsertIf2(vector<int> &vec)
             second++;
         }
 
+        first++;
     }
 }
 
 int main ()
 {
-    vector <int> intVector;
-    int number;
+    std::vector <int> vector;
+    int number = 0;
 
     while (number)
     {
-        cout << "\nEnter a number (0 is exit)\n";
-        cin >> number;
-       // if (number) intVector.push_back(number);
-        intVector.push_back(number);
+        std::cout << "\nEnter a number (0 is exit)\n";
+        std::cin >> number;
+        vector.push_back(number);
     }
 
-    intVector.pop_back();
+    vector.pop_back();
 
-    if (intVector.at(intVector.size()-1) == 1)
+    auto num = vector.at(vector.size()-1);
+
+    switch (num)
     {
-       EraseIf1(intVector);
-    } else  if (intVector.at(intVector.size()-1) == 2)
-    {
-       InsertIf2(intVector);
+        case 1:
+        {
+            eraseIf1(vector);
+            break;
+        }
+        case 2:
+        {
+            insertIf2(vector);
+            break;
+        }
+        default:
+        {
+            std::cout << "Wrong number!\n";
+            break;
+        }
+
     }
 
-
-
-    for (int i = 0; i < intVector.size(); ++i) cout << intVector.at(i);
+    for (const int i : vector)
+        std::cout << i;
 
     return 0;
 }

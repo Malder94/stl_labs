@@ -1,29 +1,27 @@
 #include <iostream>
 #include <vector>
-#include <random>
-#include <ctime>
-#include <chrono>
+
 #include "functions.cpp"
 
 int main()
 {
-    vector <double> myDoubleVector;
-    int vectorSize;
+    std::vector <double> vector;
+    int vector_size = 0;
 
-    cout << "Enter size of vector:" << endl;
-    cin  >> vectorSize;
+    std::cout << "Enter size of vector:" << std::endl;
+    std::cin >> vector_size;
 
-    VectorFill(myDoubleVector, vectorSize);
+    vectorFill(vector, vector_size);
 
-    cout << "\nUnsorted:" << endl;
+    std::cout << "\nUnsorted:" << std::endl;
 
-    VectorOut(myDoubleVector);
+    vectorOut(vector);
 
-    BubbleSort(myDoubleVector);
+    bubbleSort(vector);
 
-    cout << "\nSorted:" << endl;
+    std::cout << "\nSorted:" << std::endl;
 
-    VectorOut(myDoubleVector);
+    vectorOut(vector);
 
     return 0;
 }
