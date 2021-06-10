@@ -33,7 +33,6 @@
 
 #include <iostream>
 
-using namespace std;
 
 struct Point
 {
@@ -53,7 +52,7 @@ public:
 
     void PrintShape()
     {
-        cout << center.x << " " << center.y << endl;
+        std::cout << center.x << " " << center.y << std::endl;
     }
 
     bool IsMoreLeft(Shape& sh2)
@@ -79,14 +78,14 @@ int main()
     shape.PrintShape();
 
     if (shape.IsMoreLeft(shape2))
-        cout << "More left\n";
+        std::cout << "More left\n";
     else
-        cout << "No more left\n";
+        std::cout << "No more left\n";
 
     if (shape.IsUpper(shape2))
-        cout << "Upper\n";
+        std::cout << "Upper\n";
     else
-        cout << "Not upper\n";
+        std::cout << "Not upper\n";
 
 
     return 0;

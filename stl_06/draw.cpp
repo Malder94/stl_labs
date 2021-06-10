@@ -44,20 +44,18 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
-
-typedef struct
+struct Point
 {
     int x,y;
-} Point;
+} ;
 
 typedef  struct
 {
     int vertex_num;
-    vector<Point> vertexes;
+    std::vector<Point> vertexes;
 } Shape;
 
-Point MakeTriangle(vector<Point>& vertexes)
+Point MakeTriangle(std::vector<Point>& vertexes)
 {
     Point point1 {0, 0};
     Point point2 {7, 0};
@@ -68,7 +66,7 @@ Point MakeTriangle(vector<Point>& vertexes)
     vertexes.push_back(point3);
 }
 
-Point MakeSquareOrRectangle(vector<Point>& vertexes)
+Point MakeSquareOrRectangle(std::vector<Point>& vertexes)
 {
     int rX = rand() % 2;
 
@@ -84,7 +82,7 @@ Point MakeSquareOrRectangle(vector<Point>& vertexes)
     vertexes.push_back(point4);
 }
 
-Point MakePentagon(vector<Point>& vertexes)
+Point MakePentagon(std::vector<Point>& vertexes)
 {
     Point point1 {0, 0};
     Point point2 {5, 0};
@@ -117,34 +115,34 @@ Shape NewShape(int vertex_num)
             MakePentagon(newShape.vertexes);
             return newShape;
         default:
-            cout << "I can't work with that!" << endl;
+            std::cout << "I can't work with that!" << std::endl;
             break;
     }
 }
 
-void PrintShape(vector<Shape>& v)
+void PrintShape(std::vector<Shape>& v)
 {
     for (auto& i : v)
-        cout << i.vertex_num << " " << i.vertexes[3].x << " " << i.vertexes[3].y << endl;
+        std::cout << i.vertex_num << " " << i.vertexes[3].x << " " << i.vertexes[3].y << std::endl;
 }
 
-void SumVertexes(const vector<Shape>& v)
+void SumVertexes(const std::vector<Shape>& v)
 {
     int sumVertexes = 0;
 
     for (auto i : v)
         sumVertexes += i.vertexes.size();
 
-    cout << "Vertex sum: " << sumVertexes << endl;
+    std::cout << "Vertex sum: " << sumVertexes << std::endl;
 
 }
 
-void ShapesCount(const vector<Shape>& v)
+void ShapesCount(const std::vector<Shape>& v)
 {
     auto first = v.begin();
     auto last = v.end();
 
-    vector<int> counts;
+    std::vector<int> counts;
     int s = 0;
 
     for (int points = 3; points <= 5; ++points)
@@ -152,46 +150,46 @@ void ShapesCount(const vector<Shape>& v)
             return sh.vertex_num == points;
         }));
 
-    cout << "\nNumber of shapes:\n";
+    std::cout << "\nNumber of shapes:\n";
 
-    cout << "Triangles: "  << count_if(first, last, [](const Shape& sh) -> bool {
+    std::cout << "Triangles: "  << count_if(first, last, [](const Shape& sh) -> bool {
         return sh.vertex_num == 3
-        ;})  << endl;
-    cout << "Rectangles: " << count_if(first, last, [](const Shape& sh) -> bool {
+        ;})  << std::endl;
+    std::cout << "Rectangles: " << count_if(first, last, [](const Shape& sh) -> bool {
         return (sh.vertex_num == 4) && (sh.vertexes[3].x != sh.vertexes[3].y)
-                ;})  << endl;
-    cout << "Squares: "    << count_if(first, last, [](const Shape& sh) -> bool {
+                ;})  << std::endl;
+    std::cout << "Squares: "    << count_if(first, last, [](const Shape& sh) -> bool {
         return (sh.vertex_num == 4) && (sh.vertexes[3].x == sh.vertexes[3].y)
-                ;})  << endl;
-    cout << "Pentagons:"   << count_if(first, last, [](const Shape& sh) -> bool {
+                ;})  << std::endl;
+    std::cout << "Pentagons:"   << count_if(first, last, [](const Shape& sh) -> bool {
         return sh.vertex_num == 5
-                ;})  << endl;
+                ;})  << std::endl;
 }
 
-void ErasePentagons(vector<Shape>& v)
+void ErasePentagons(std::vector<Shape>& v)
 {
-    vector<Shape>::iterator removedRange = remove_if(v.begin(), v.end(), []( Shape& sh) -> bool {
+    std::vector<Shape>::iterator removedRange = remove_if(v.begin(), v.end(), []( Shape& sh) -> bool {
             return sh.vertex_num == 5;
     });
 
     v.erase(removedRange, v.end());
 }
 
-void CreatePoints(vector<Shape>& shapes, vector<Point>& points)
+void CreatePoints(std::vector<Shape>& shapes, std::vector<Point>& points)
 {
     for (auto shape : shapes)
         points.push_back(shape.vertexes[rand ()% shape.vertexes.size()]);
 }
 
-void PrintPoints(const vector<Point>& points)
+void PrintPoints(const std::vector<Point>& points)
 {
-    cout << "Points: \n";
+    std::cout << "Points: \n";
 
     for (auto point : points)
-        cout << point.x << " " << point.y << endl;
+        std::cout << point.x << " " << point.y << std::endl;
 }
 
-void SortShapes(vector<Shape>& v)
+void SortShapes(std::vector<Shape>& v)
 {
     auto first = v.begin();
     auto last = v.end();
@@ -213,8 +211,8 @@ void SortShapes(vector<Shape>& v)
 
 int main()
 {
-    vector<Shape> shapes;
-    vector<Point> points;
+    std::vector<Shape> shapes;
+    std::vector<Point> points;
 
     for (int i = 100; i > 0; --i)
         shapes.push_back(NewShape(rand() % 3 + 3));

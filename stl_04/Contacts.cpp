@@ -1,14 +1,17 @@
 #include "Contacts.h"
-void Contacts::PrintItem(Contacts& contact) {
-    cout << contact.name << " " << contact.number << endl;
+
+void Contacts::PrintItem(Contacts& contact)
+{
+    std::cout << contact.name << " " << contact.number << std::endl;
 }
 
-Contacts::Contacts (string _name, string _number) {
-    name = _name;
+Contacts::Contacts (std::string _name, std::string _number)
+{
+    name   = _name;
     number = _number;
 }
 
-void Contacts::FirstInit(list <Contacts>& contactsList)
+void Contacts::FirstInit(std::list <Contacts>& contactsList)
 {
     Contacts contact1 ("Alex", "89021378111");
     Contacts contact2 ( "Denis", "89214378222");
@@ -19,20 +22,20 @@ void Contacts::FirstInit(list <Contacts>& contactsList)
 
 void Contacts::PrintMenu()
 {
-    cout << "\nMenu\n\n";
+    std::cout << "\nMenu\n\n";
 
-    cout << "1. Current\n";
-    cout << "2. Move\n";
-    cout << "3. Insert item...\n";
-    cout << "4. Edit item\n";
-    cout << "5. Erase\n";
-    cout << "6. Print all items\n";
-    cout << "7. Exit\n";
+    std::cout << "1. Current\n";
+    std::cout << "2. Move\n";
+    std::cout << "3. Insert item...\n";
+    std::cout << "4. Edit item\n";
+    std::cout << "5. Erase\n";
+    std::cout << "6. Print all items\n";
+    std::cout << "7. Exit\n";
 
-    cout << "Enter: ";
+    std::cout << "Enter: ";
 }
 
-void Contacts::MoveIterator(t_contactsit& it, list<Contacts>& contactsList)
+void Contacts::MoveIterator(t_contactsit& it, std::list<Contacts>& contactsList)
 {
     int n = 1;
     bool goodN;
@@ -42,39 +45,39 @@ void Contacts::MoveIterator(t_contactsit& it, list<Contacts>& contactsList)
     while (n != 0)
     {
         goodN = false;
-        cout << "Enter n to move forward, or -n to move backward. 0 is exit:  ";
-        cin >> n;
+        std::cout << "Enter n to move forward, or -n to move backward. 0 is exit:  ";
+        std::cin >> n;
 
         if ((n > 0 && n <= distance(it, last)) || ((n < 0) && abs(n) <= distance(it, first)))
         {
             goodN = true;
         } else
         {
-            cout << "Wrong n!\n";
+            std::cout << "Wrong n!\n";
         }
 
         if (goodN)
         {
             advance(it, n);
-            cout << "Current item:\n";
+            std::cout << "Current item:\n";
             PrintItem(*it);
         }
     }
 }
 
-bool IsRightNumber(string& number)
+bool IsRightNumber(std::string& number)
 {
     if (number.size() != 10)
     {
-        cout << "Number should has 10 digits, for example \"1234567890\"\n";
+        std::cout << "Number should has 10 digits, for example \"1234567890\"\n";
         return false;
     }
 
     size_t found = number.find_first_not_of("1234567890");
 
-    if (found != string::npos)
+    if (found != std::string::npos)
     {
-        cout << "Only digits, please.\n";
+        std::cout << "Only digits, please.\n";
         return false;
     }
 
@@ -83,40 +86,40 @@ bool IsRightNumber(string& number)
 
 }
 
-string EditNumber(string& number)
+std::string EditNumber(std::string& number)
 {
     return "+7 (" + number.substr(0,3) + ") " + number.substr(3,3)
         + " " + number.substr(6,2) + " " + number.substr(8,2);
 
 }
 
-void Contacts::InsertItem(t_contactsit& it, list<Contacts>& contactsList)
+void Contacts::InsertItem(t_contactsit& it, std::list<Contacts>& contactsList)
 {
     short key;
-    string rightNumber;
+    std::string rightNumber;
 
     while (key != 4)
     {
         Contacts newContact;
-        cout << "1. Insert Item before current\n";
-        cout << "2. Insert Item after current\n";
-        cout << "3. Insert Item to the end\n";
-        cout << "4. Exit\n";
+        std::cout << "1. Insert Item before current\n";
+        std::cout << "2. Insert Item after current\n";
+        std::cout << "3. Insert Item to the end\n";
+        std::cout << "4. Exit\n";
 
-        cin >> key;
+        std::cin >> key;
 
         if (key != 4)
         {
-            cout << "Enter name: ";
-            cin >> newContact.name;
+            std::cout << "Enter name: ";
+            std::cin >> newContact.name;
 
-            cout << "Enter number: +7 ";
-            cin >> rightNumber;
+            std::cout << "Enter number: +7 ";
+            std::cin >> rightNumber;
 
             while (!IsRightNumber(rightNumber))
             {
-                cout << "Enter number: +7 ";
-                cin >> rightNumber;
+                std::cout << "Enter number: +7 ";
+                std::cin >> rightNumber;
             }
 
             newContact.number = EditNumber(rightNumber);
@@ -136,42 +139,41 @@ void Contacts::InsertItem(t_contactsit& it, list<Contacts>& contactsList)
                 contactsList.push_back(newContact);
                 break;
             default:
-                cout << "Goodbye\n";
+                std::cout << "Goodbye\n";
                 exit;
         }
 
-        cout << "New contact: ";
+        std::cout << "New contact: ";
         PrintItem(newContact);
     }
 }
 
-void Contacts::EraseItem(t_contactsit& it, list<Contacts>& contactsList)
+void Contacts::EraseItem(t_contactsit& it, std::list<Contacts>& contactsList)
 {
     if (contactsList.empty())
     {
-        cout << "Nothing to erase";
-    } else
+        std::cout << "Nothing to erase";
+    }
+    else
     {
-        string _name = it->name;
+        std::string _name = it->name;
         contactsList.erase(it++);
-        cout << "Contact \"" << _name << "\" is delete!\n";
+        std::cout << "Contact \"" << _name << "\" is delete!\n";
     }
 }
 
 void Contacts::EditItem(t_contactsit& it)
 {
     //Contacts newContact;
-    cout << "Current item: \n";
+    std::cout << "Current item: \n";
     PrintItem(*it);
 
-    cout << "New name: ";
-    cin >> it->name;
+    std::cout << "New name: ";
+    std::cin >> it->name;
 
-    cout << "New number: ";
-    cin >> it->name;
+    std::cout << "New number: ";
+    std::cin >> it->name;
 
-    cout << "Current item after edit: \n";
+    std::cout << "Current item after edit: \n";
     PrintItem(*it);
 }
-
-Contacts::~Contacts(){};

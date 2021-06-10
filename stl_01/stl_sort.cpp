@@ -12,26 +12,26 @@ int main()
     std::vector <int>std::vector;
     int vector_size;
 
-    std::std::cout << "Enter size ofstd::vector:" << std::std::endl;
-    std::std::std::cin  >> vector_size;
+    std::cout << "Enter size ofstd::vector:" << std::endl;
+    std::std::cin  >> vector_size;
 
     vectorFill(vector, vector_size);
-    std::std::cout << "\nUnsorted:" << std::std::endl;
+    std::cout << "\nUnsorted:" << std::endl;
 
     vectorOut(vector);
 
-    auto begin = std::std::chrono::high_resolution_clock::now();
+    auto begin = std::chrono::high_resolution_clock::now();
 
     sort(vector.begin(),std::vector.end());
 
-    auto end = std::std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
 
-    auto elapsed_ms = std::std::chrono::duration_cast<std::std::chrono::milliseconds>(end - begin);
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 
-    std::std::cout << "\nSorted:" << std::std::endl;
+    std::cout << "\nSorted:" << std::endl;
 
     vectorOut(vector);
-    std::std::cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
+    std::cout << "The time of sort: " << elapsed_ms.count() << " ms\n";
 
     return 0;
 }

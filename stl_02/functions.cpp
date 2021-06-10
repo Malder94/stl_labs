@@ -5,9 +5,7 @@
 #define WORD_LENGTH    10;
 #define STRING_LENGHT  40;
 
-using namespace std;
-
-size_t unicode_length(const string &text) {
+size_t unicode_length(const std::string &text) {
     size_t length = 0;
 
     for (auto p = text.c_str(); *p != 0; ++p)
@@ -18,18 +16,18 @@ size_t unicode_length(const string &text) {
 
 bool IsExtraSpaces(char lhs, char rhs) { return (lhs == rhs) && (lhs == ' '); }
 
-void EraseExtraSpaces(string &str)
+void EraseExtraSpaces(std::string &str)
 {
-    string::iterator new_end = unique(str.begin(), str.end(), IsExtraSpaces);
+    std::string::iterator new_end = unique(str.begin(), str.end(), IsExtraSpaces);
     str.erase(new_end, str.end());
 }
 
 
-void WrongSpaces (string &str)
+void WrongSpaces (std::string &str)
 {
     int currentPosition = str.find_first_of(",.?!:;");
 
-    while (currentPosition != string::npos)
+    while (currentPosition != std::string::npos)
     {
         if ((int)str[currentPosition - 1] == 32)
         {
@@ -45,13 +43,13 @@ void WrongSpaces (string &str)
     }
 }
 
-void ReplaceLongWords(string &str, const string &vau, size_t maxLength) {
+void ReplaceLongWords(std::string &str, const std::string &vau, size_t maxLength) {
     int end = str.find_first_of(".,:;?! ");
     int begin = 0;
     int offset = maxLength - vau.size();
 
-    while (end != string::npos and begin != string::npos) {
-        string tmp(str, begin, (end - begin));
+    while (end != std::string::npos and begin != std::string::npos) {
+        std::string tmp(str, begin, (end - begin));
         if (unicode_length(tmp) > maxLength) {
             str.replace(begin, end - begin, vau);
             end -= offset;
@@ -61,22 +59,23 @@ void ReplaceLongWords(string &str, const string &vau, size_t maxLength) {
     }
 }
 
-void StringOut(const string &toPrint, int outputMaxLength) {
+void StringOut(const std::string &toPrint, int outputMaxLength) {
 
     if (unicode_length(toPrint) <= outputMaxLength) {
-        cout << toPrint << endl;
+        std::cout << toPrint << std::endl;
         return;
     }
 
-    vector<string> printMe(0);
+    std::vector<std::string> printMe(0);
     int begin = 0;
     int posMark = toPrint.find(' ');
     int cutMark = posMark;
 
-    while (posMark != string::npos and begin != string::npos) {
-        string tmp(toPrint, begin, (posMark - begin));
+    while (posMark != std::string::npos and begin != std::string::npos)
+    {
+        std::string tmp(toPrint, begin, (posMark - begin));
         if (unicode_length(tmp) > outputMaxLength) {
-            string tmp(toPrint, begin, cutMark - begin);
+            std::string tmp(toPrint, begin, cutMark - begin);
             if (tmp[0] == 32){
                 tmp.erase(0,1);
             }
@@ -87,14 +86,14 @@ void StringOut(const string &toPrint, int outputMaxLength) {
         posMark = toPrint.find(' ', posMark + 1);
     }
 
-    if (cutMark != toPrint.size()) {
-        string tmp(toPrint, begin, string::npos);
+    if (cutMark != toPrint.size())
+    {
+        std::string tmp(toPrint, begin, std::string::npos);
         printMe.push_back(tmp);
     }
 
-    for (const auto &i : printMe) {
-        cout << i << endl;
-    }
+    for (const auto &i : printMe)
+        std::cout << i << std::endl;
 }
 
 

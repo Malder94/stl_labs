@@ -13,7 +13,7 @@
 
 int main()
 {
-    std::vector <int>std::vector;
+    std::vector <int> vector;
     int vector_size;
 
     std::cout << "Enter size ofstd::vector:" << std::endl;

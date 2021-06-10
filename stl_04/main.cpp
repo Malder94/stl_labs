@@ -28,15 +28,13 @@
 #include <list>
 #include "Contacts.h"
 
-using namespace std;
-
 Contacts *contacts = new Contacts();
 
-void PrintContactsList(list <Contacts>& contactsList);
+void PrintContactsList(std::list <Contacts>& contactsList);
 
 int main()
 {
-    list <Contacts> contactsList;
+    std::list <Contacts> contactsList;
 
     contacts->FirstInit(contactsList);
 
@@ -44,14 +42,14 @@ int main()
 
     auto it = contactsList.begin();
 
-    unsigned int key;
+    uint key = 0;
 
     contacts->PrintMenu();
 
     //region WorkCycle
     while (key != 7)
     {
-        cin >> key;
+        std::cin >> key;
 
         switch (key)
         {
@@ -84,7 +82,7 @@ int main()
     return 0;
 }
 
-void PrintContactsList(list <Contacts>& contactsList)
+void PrintContactsList(std::list <Contacts>& contactsList)
 {
     for (auto& item : contactsList)
         contacts->PrintItem(item);

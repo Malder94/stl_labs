@@ -30,16 +30,14 @@
 #include <iomanip>
 //endregion Include
 
-using namespace std;
+struct DataStruct
+{
+    int key1;
+    int key2;
+    std::string  str;
+} ;
 
-typedef struct
-  {
-   int key1;
-   int key2;
-   string  str;
-  } DataStruct;
-
-DataStruct NewStruct(vector<string>& str)
+DataStruct NewStruct(std::vector<std::string>& str)
 {
     int sign = rand () % 2;
     int key1 = (sign == 1) ? (rand() % 5) : (rand() % 5) * -1;
@@ -50,27 +48,27 @@ DataStruct NewStruct(vector<string>& str)
     return newStruct;
 }
 
-void Print(vector<DataStruct>& v)
+void Print(std::vector<DataStruct>& v)
 {
     for (auto& i : v)
-        cout << setw(2) << i.key1 << " " << setw(2) << i.key2 << " " << i.str << endl;
+        std::cout << std::setw(2) << i.key1 << " " << std::setw(2) << i.key2 << " " << i.str << std::endl;
 }
 
-void FillTable(vector<string>& t)
+void FillTable(std::vector<std::string>& t)
 {
-    t.push_back("First string");
-    t.push_back("Second string");
-    t.push_back("Third string");
-    t.push_back("Fourth string");
-    t.push_back("Fifth string");
-    t.push_back("Sixth string");
-    t.push_back("Seventh string");
-    t.push_back("Eighth string");
-    t.push_back("Ninth string");
-    t.push_back("Tenth string");
+    t.emplace_back("First string");
+    t.emplace_back("Second string");
+    t.emplace_back("Third string");
+    t.emplace_back("Fourth string");
+    t.emplace_back("Fifth string");
+    t.emplace_back("Sixth string");
+    t.emplace_back("Seventh string");
+    t.emplace_back("Eighth string");
+    t.emplace_back("Ninth string");
+    t.emplace_back("Tenth string");
 }
 
-void Sort( vector<DataStruct>& ds)
+void Sort( std::vector<DataStruct>& ds)
 {
     sort(ds.begin(), ds.end(), [](const DataStruct& ds1, const DataStruct& ds2) -> bool
          {
@@ -87,8 +85,8 @@ void Sort( vector<DataStruct>& ds)
 
 int main ()
 {
-    vector<DataStruct> structs;
-    vector<string> table;
+    std::vector<DataStruct> structs;
+    std::vector<std::string> table;
 
     FillTable(table);
 
@@ -99,7 +97,7 @@ int main ()
         --i;
     }
 
-    cout << "Before sort:\n";
+    std::cout << "Before sort:\n";
 
     Print(structs);
 
@@ -111,7 +109,7 @@ int main ()
 
     Sort(structs);
 
-    cout << "After sort:\n";
+    std::cout << "After sort:\n";
 
     Print(structs);
 

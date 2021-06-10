@@ -13,8 +13,6 @@ public:
     Contact();
     Contact(string& _name, string& _number);
 
-    ~Contact();
-
     string getName();
     void setName(string _name);
 

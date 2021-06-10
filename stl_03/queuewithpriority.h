@@ -4,7 +4,6 @@
 #include <list>
 #include <string>
 #include <iostream>
-using namespace std;
 
 typedef enum
 {
@@ -14,7 +13,7 @@ typedef enum
 
 typedef struct
 {
-    string name;
+    std::string name;
 } QueueElement;
 
 

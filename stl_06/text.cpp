@@ -16,22 +16,19 @@
 #include <map>
 //endregion Include
 
-using namespace std;
-
-void WordCount(const map<string, int>::value_type &vt)
+void WordCount(const std::map<std::string, int>::value_type &vt)
 {
     if (vt.second == 1)
-        cout << vt.first << endl;
+        std::cout << vt.first << std::endl;
 }
 
 int main()
 {
-    ifstream fInput ("../stl_06/erunovskiy/input.txt");
-    map<string, int> myMap;
-    string str;
+    std::ifstream fInput ("../stl_06/erunovskiy/input.txt");
+    std::map<std::string, int> myMap;
+    std::string str;
 
     while(!fInput.eof() && fInput >> str)
         ++myMap[str];
     for_each(++myMap.begin(), ++myMap.end(), WordCount);
 }
-

@@ -1,7 +1,7 @@
 //region Task
 /* Разработать программу, которая, используя только стандартные алгоритмы и функторы,
  * умножает каждый элемент списка чисел с плавающей  точкой на число PI
- * */
+ */
 //endregion Task
 
 //region Include
@@ -11,9 +11,7 @@
 #include <iomanip>
 //endregion Include
 
-using namespace std;
-
-void FillVector(vector <float>& v)
+void FillVector(std::vector <float>& v)
 {
     int sign = 0;
     float newNumber = 0;
@@ -28,13 +26,13 @@ void FillVector(vector <float>& v)
     }
 }
 
-void PrintVector(const vector<float>& v)
+void PrintVector(const std::vector<float>& v)
 {
     int i = 1;
     for (auto item : v) {
-        cout << setw(8) << item << " ";
+        std::cout << std::setw(8) << item << " ";
         if (i++ % 14 == 0)
-            cout << endl;
+            std::cout << std::endl;
     }
 }
 
@@ -50,7 +48,7 @@ public:
 
 int main ()
 {
-    vector<float> floatVector;
+    std::vector<float> floatVector;
     MyFunctor myFunctor;
 
     FillVector(floatVector);
@@ -60,7 +58,7 @@ int main ()
     //myFunctor = for_each(floatVector.begin(), floatVector.end(), myFunctor);
     for_each(floatVector.begin(), floatVector.end(), myFunctor);
 
-    cout << "\nAfter multiplication on PI: \n ";
+    std::cout << "\nAfter multiplication on PI: \n ";
 
     PrintVector(floatVector);
 

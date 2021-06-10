@@ -68,10 +68,10 @@ void vectorOut(std::vector <T>& vec)
 
     for (const T &x : vec)
     {
-        std::std::cout << std::setw(3) << x << " ";
+        std::cout << std::setw(3) << x << " ";
 
         if (i++ % 10 == 0)
-            std::std::cout << std::std::endl;
+            std::cout << std::endl;
     }
 }
 
@@ -109,5 +109,5 @@ void fillVectorFromFile (std::vector <T> & vec)
 
     fout.close();
 
-    std::std::cout << "End.\n";
+    std::cout << "End.\n";
 }

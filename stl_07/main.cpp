@@ -21,9 +21,7 @@
 #include <iomanip>
 //endregion Include
 
-using namespace std;
-
-void FillVector(vector<int>& v)
+void FillVector(std::vector<int>& v)
 {
     int sign = 0;
     int newNumber = 0;
@@ -38,13 +36,13 @@ void FillVector(vector<int>& v)
     }
 }
 
-void PrintVector(const vector<int>& v)
+void PrintVector(const std::vector<int>& v)
 {
     int i = 1;
     for (auto item : v) {
-        cout << setw(4) << item << " ";
+        std::cout << std::setw(4) << item << " ";
         if (i++ % 20 == 0)
-            cout << endl;
+            std::cout << std::endl;
     }
 }
 
@@ -101,7 +99,7 @@ public:
 
 int main ()
 {
-    vector <int> sequence;
+    std::vector <int> sequence;
     MyFunctor myFunctor;
 
     FillVector(sequence);
@@ -112,16 +110,16 @@ int main ()
 
     myFunctor = for_each(sequence.begin(), sequence.end(), myFunctor);
 
-    cout << "Even sum: " << myFunctor.even_sum() << endl;
-    cout << "Odd sum: "  << myFunctor.odd_sum()  << endl;
-    cout << "Average: " << myFunctor.average() << endl;
-    cout << "Max number: " << myFunctor.max() << endl;
-    cout << "Min number: " << myFunctor.min() << endl;
-    cout << "Positive: " << myFunctor.positive() << endl;
-    cout << "Negative: " << myFunctor.negative() << endl;
+    std::cout << "Even sum: " << myFunctor.even_sum() << std::endl;
+    std::cout << "Odd sum: "  << myFunctor.odd_sum()  << std::endl;
+    std::cout << "Average: " << myFunctor.average() << std::endl;
+    std::cout << "Max number: " << myFunctor.max() << std::endl;
+    std::cout << "Min number: " << myFunctor.min() << std::endl;
+    std::cout << "Positive: " << myFunctor.positive() << std::endl;
+    std::cout << "Negative: " << myFunctor.negative() << std::endl;
     sequence[sequence.size()-1] = sequence[0];
-    cout << "First: " << sequence[0] << " Last: " << sequence[sequence.size()-1] << endl;
-    cout << "First and last is equal? " << myFunctor.isEqual() << endl;
+    std::cout << "First: " << sequence[0] << " Last: " << sequence[sequence.size()-1] << std::endl;
+    std::cout << "First and last is equal? " << myFunctor.isEqual() << std::endl;
 
     return 0;
 }
